@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="radio_red" type="id" />
+    <item name="radio_green" type="id" />
+    <item name="radio_blue" type="id" />
+    <item name="radio_cyan" type="id" />
+    <item name="radio_yellow" type="id" />
+    <item name="radio_magenta" type="id" />
+    <item name="action_color_chooser" type="id" />
+</resources>
