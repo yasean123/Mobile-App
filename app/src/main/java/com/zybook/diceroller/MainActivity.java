@@ -21,6 +21,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     public LinearLayout dice3Layout;
     public LinearLayout dice4Layout;
     public LinearLayout dice5Layout;
+    public ViewFlipper mViewFlipper;
 
 
     @Override
@@ -67,8 +69,10 @@ public class MainActivity extends AppCompatActivity
         mDiceImageViews[3] = findViewById(R.id.dice4);
         mDiceImageViews[4] = findViewById(R.id.dice5);
         dice3Layout = findViewById(R.id.dice3Layout);
-//        dice4Layout = findViewById(R.id.dice4Layout);
-//        dice5Layout = findViewById(R.id.dice5Layout);
+        dice4Layout = findViewById(R.id.dice4Layout);
+        dice5Layout = findViewById(R.id.dice5Layout);
+        mViewFlipper = findViewById(R.id.view_flipper);
+
         // All dice are initially visible
         mVisibleDice = MAX_DICE;
         // getDiceColor(R.color.colorDice);
@@ -310,24 +314,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onUpdateDice(int num) {
-//        switch (num) {
-//            case 1:
-//                dice3Layout.setVisibility(View.VISIBLE);
-//                dice4Layout.setVisibility(View.GONE);
-//                dice5Layout.setVisibility(View.GONE);
-//                break;
-//            case 2:
-//                dice3Layout.setVisibility(View.GONE);
-//                dice4Layout.setVisibility(View.VISIBLE);
-//                dice5Layout.setVisibility(View.GONE);
-//                break;
-//            case 3:
-//                dice3Layout.setVisibility(View.GONE);
-//                dice4Layout.setVisibility(View.GONE);
-//                dice5Layout.setVisibility(View.VISIBLE);
-//                break;
-//
-//        }
+        switch (num) {
+            case 1:
+                mViewFlipper.startFlipping();
+                break;
+            case 2:
+                mViewFlipper.startFlipping();
+                break;
+            case 3:
+                dice3Layout.setVisibility(View.GONE);
+                dice4Layout.setVisibility(View.GONE);
+                dice5Layout.setVisibility(View.VISIBLE);
+                break;
+
+        }
     }
 
 }
