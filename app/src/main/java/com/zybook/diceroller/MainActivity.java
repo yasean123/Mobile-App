@@ -64,10 +64,11 @@ public class MainActivity extends AppCompatActivity
         mDiceImageViews[0] = findViewById(R.id.dice1);
         mDiceImageViews[1] = findViewById(R.id.dice2);
         mDiceImageViews[2] = findViewById(R.id.dice3);
+        dice3Layout = findViewById(R.id.dice3Layout);
         mDiceImageViews[3] = findViewById(R.id.dice4);
         mDiceImageViews[4] = findViewById(R.id.dice5);
-        dice3Layout = findViewById(R.id.dice3Layout);
-//        dice4Layout = findViewById(R.id.dice4Layout);
+
+        dice4Layout = findViewById(R.id.dice4Layout);
 //        dice5Layout = findViewById(R.id.dice5Layout);
         // All dice are initially visible
         mVisibleDice = MAX_DICE;
@@ -89,11 +90,11 @@ public class MainActivity extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
-//    public boolean onLongPressOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.register_context_menu, menu);
-//        mMenu = menu;
-//        return super.onCreateOptionsMenu(menu);
-//    }
+    public boolean onLongPressOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.register_context_menu, menu);
+        mMenu = menu;
+        return super.onCreateOptionsMenu(menu);
+    }
 
     private void showDice() {
         // Display only the number of dice visible
@@ -141,27 +142,29 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.action_one:
                 changeDiceVisibility(1);
-                onUpdateDice(1);
                 showDice();
+                dice4Layout.setVisibility(View.GONE);
+
                 return true;
             case R.id.action_two:
                 changeDiceVisibility(2);
-                onUpdateDice(1);
                 showDice();
+                dice4Layout.setVisibility(View.GONE);
+
                 return true;
             case R.id.action_three:
                 changeDiceVisibility(3);
-                onUpdateDice(1);
                 showDice();
+                dice4layout.setVisibilty(View.VISIBLE);
                 return true;
             case R.id.action_four:
                 changeDiceVisibility(4);
-                onUpdateDice(2);
+
                 showDice();
                 return true;
             case R.id.action_five:
                 changeDiceVisibility(5);
-                onUpdateDice(3);
+
                 showDice();
                 return true;
             case R.id.action_about:
@@ -314,12 +317,10 @@ public class MainActivity extends AppCompatActivity
 //            case 1:
 //                dice3Layout.setVisibility(View.VISIBLE);
 //                dice4Layout.setVisibility(View.GONE);
-//                dice5Layout.setVisibility(View.GONE);
 //                break;
 //            case 2:
 //                dice3Layout.setVisibility(View.GONE);
 //                dice4Layout.setVisibility(View.VISIBLE);
-//                dice5Layout.setVisibility(View.GONE);
 //                break;
 //            case 3:
 //                dice3Layout.setVisibility(View.GONE);
