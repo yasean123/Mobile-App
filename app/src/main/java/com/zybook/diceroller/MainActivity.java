@@ -74,6 +74,10 @@ public class MainActivity extends AppCompatActivity
 
         for (ImageView iv : mDiceImageViews)
             registerForContextMenu(mDiceImageViews[0]);
+            registerForContextMenu(mDiceImageViews[1]);
+             registerForContextMenu(mDiceImageViews[2]);
+            registerForContextMenu(mDiceImageViews[3]);
+            registerForContextMenu(mDiceImageViews[4]);
 
         mDetector = new GestureDetectorCompat(this, new DiceGestureListener());
     }
