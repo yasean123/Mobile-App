@@ -74,6 +74,10 @@ public class MainActivity extends AppCompatActivity
 
         for (ImageView iv : mDiceImageViews)
             registerForContextMenu(mDiceImageViews[0]);
+            registerForContextMenu(mDiceImageViews[1]);
+            registerForContextMenu(mDiceImageViews[2]);
+            registerForContextMenu(mDiceImageViews[3]);
+            registerForContextMenu(mDiceImageViews[4]);
 
         mDetector = new GestureDetectorCompat(this, new DiceGestureListener());
     }
@@ -81,12 +85,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.appbar_menu, menu);
-        mMenu = menu;
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onLongPressOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.register_context_menu, menu);
         mMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
@@ -219,13 +217,14 @@ public class MainActivity extends AppCompatActivity
                 final CharSequence[] configs = {"4-Sided", "6-Sided", "10-Sided"};
                 builder.setItems(configs, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
-                        int currentDice = 0;
+                        int currentD = currentDice;
+                        System.out.println("Current Dice" + currentDice);
                         if (item == 0)                      // 3-Sided
-                            mDice[currentDice].setSides(4);
+                            mDice[currentD].setSides(4);
                         else if (item == 1)
-                            mDice[currentDice].setSides(6);   // 4-Sided
+                            mDice[currentD].setSides(6);   // 4-Sided
                         else
-                            mDice[currentDice].setSides(10);   // 6-Sided
+                            mDice[currentD].setSides(10);   // 6-Sided
                         showDice();
                     }
                 });
