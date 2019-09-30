@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity
     private Dice[] mDice;
     private ImageView[] mDiceImageViews;
     private GestureDetectorCompat mDetector;
-    public LinearLayout dice3Layout;
     public LinearLayout dice4Layout;
-    public LinearLayout dice5Layout;
 
 
     @Override
@@ -64,16 +62,13 @@ public class MainActivity extends AppCompatActivity
         mDiceImageViews[0] = findViewById(R.id.dice1);
         mDiceImageViews[1] = findViewById(R.id.dice2);
         mDiceImageViews[2] = findViewById(R.id.dice3);
-        dice3Layout = findViewById(R.id.dice3Layout);
         mDiceImageViews[3] = findViewById(R.id.dice4);
         mDiceImageViews[4] = findViewById(R.id.dice5);
-
         dice4Layout = findViewById(R.id.dice4Layout);
 //        dice5Layout = findViewById(R.id.dice5Layout);
         // All dice are initially visible
         mVisibleDice = MAX_DICE;
         // getDiceColor(R.color.colorDice);
-        onUpdateDice(1);
         showDice();
 
 
@@ -105,6 +100,12 @@ public class MainActivity extends AppCompatActivity
                         getApplicationContext().getTheme());
             } else {
                 diceDrawable = getResources().getDrawable(mDice[i].getImageId());
+            }
+
+            if(mVisibleDice == 4){
+
+                mDiceImageViews[4].setImageDrawable(diceDrawable);
+                mDiceImageViews[4].setContentDescription(Integer.toString(mDice[i].getNumber()));
             }
 
             mDiceImageViews[i].setImageDrawable(diceDrawable);
@@ -148,23 +149,22 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.action_two:
                 changeDiceVisibility(2);
-                showDice();
                 dice4Layout.setVisibility(View.GONE);
-
+                showDice();
                 return true;
             case R.id.action_three:
                 changeDiceVisibility(3);
+                dice4Layout.setVisibility(View.GONE);
                 showDice();
-                dice4layout.setVisibilty(View.VISIBLE);
                 return true;
             case R.id.action_four:
                 changeDiceVisibility(4);
-
+                dice4Layout.setVisibility(View.VISIBLE);
                 showDice();
                 return true;
             case R.id.action_five:
                 changeDiceVisibility(5);
-
+                dice4Layout.setVisibility(View.VISIBLE);
                 showDice();
                 return true;
             case R.id.action_about:
@@ -254,12 +254,20 @@ public class MainActivity extends AppCompatActivity
 
         // Make dice visible
         for (int i = 0; i < numVisible; i++) {
+            if(numVisible == 4){
+                System.out.println("We need to hide " + numVisible);
+                mDiceImageViews[2].setVisibility(View.GONE);
+            }
             mDiceImageViews[i].setVisibility(View.VISIBLE);
         }
 
         // Hide remaining dice
         for (int i = numVisible; i < MAX_DICE; i++) {
+            System.out.println("Does this show on 4?");
             mDiceImageViews[i].setVisibility(View.GONE);
+            if(numVisible == 4){
+                mDiceImageViews[4].setVisibility(View.VISIBLE);
+            }
         }
 
     }
@@ -310,25 +318,6 @@ public class MainActivity extends AppCompatActivity
             rollDice();
             return true;
         }
-    }
-
-    public void onUpdateDice(int num) {
-//        switch (num) {
-//            case 1:
-//                dice3Layout.setVisibility(View.VISIBLE);
-//                dice4Layout.setVisibility(View.GONE);
-//                break;
-//            case 2:
-//                dice3Layout.setVisibility(View.GONE);
-//                dice4Layout.setVisibility(View.VISIBLE);
-//                break;
-//            case 3:
-//                dice3Layout.setVisibility(View.GONE);
-//                dice4Layout.setVisibility(View.GONE);
-//                dice5Layout.setVisibility(View.VISIBLE);
-//                break;
-//
-//        }
     }
 
 }
